@@ -2,19 +2,17 @@ package ro.info.uaic.lab2.room;
 
 import java.util.Objects;
 
-public class Room {
-    private String name;
-    private RoomType type;
-    private int capacity;
+public abstract class Room {
+    protected String name;
+    protected int capacity;
 
-    public Room(){
+    public Room() {
 
     }
 
-    public Room (String name, int capacity, RoomType type){
-        this.name = name;
+    public Room (String name, int capacity) {
         this.capacity = capacity;
-        this.type = type;
+        this.name = name;
     }
 
     public String getName() {
@@ -23,14 +21,6 @@ public class Room {
 
     public int getCapacity() {
         return capacity;
-    }
-
-    public RoomType getType() {
-        return type;
-    }
-
-    public void setType(RoomType type) {
-        this.type = type;
     }
 
     public void setName(String name) {
@@ -42,24 +32,15 @@ public class Room {
     }
 
     @Override
-    public String toString() {
-        return "Room{" +
-                "name='" + name + '\'' +
-                ", type=" + type +
-                ", capacity=" + capacity +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return capacity == room.capacity && Objects.equals(name, room.name) && type == room.type;
+        return capacity == room.capacity && Objects.equals(name, room.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, capacity);
+        return Objects.hash(name, capacity);
     }
 }
